@@ -9,7 +9,11 @@ show-by-example galleries — no hand-written `.kmn`.
 
 ## What's here
 
-- **[The Trailmap](index.html)** — a living map of the project, modelled on the
+- **[What to Expect](expect.html)** — the visitor-facing companion, written for
+  keyboard authors in plain language: what making a keyboard feels like today,
+  what is still rough, and what is on its way. Drawn from the project's own
+  user stories in its completed specifications.
+- **[The Trailmap](index.html)** — a living map of the project for developers, modelled on the
   [FWLite Trailmap](https://myieye.github.io/fwlite-trailmap/): what has been
   accomplished, what is being worked on now, known issues, and what is to come,
   organised as camps along one trail. It is deliberately *not* user

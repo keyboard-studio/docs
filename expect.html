@@ -1,0 +1,615 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="data:," />
+    <title>Keyboard Studio — What to Expect</title>
+    <style>
+      :root, [data-theme="dark"] {
+        --bg: #18243F;
+        --surface: #1F2C49;
+        --surface-2: #27365A;
+        --border: #33436A;
+        --text: #EAF1FB;
+        --muted: #AEBCD6;
+        --accent: #5AA7F0;
+        --on-accent: #18243F;
+        --topo: rgba(0, 167, 225, 0.07);
+        --shadow: 0 10px 30px rgba(2, 10, 28, 0.45);
+        --pill-ready-bg: rgba(80, 158, 47, 0.28);   --pill-ready-tx: #A9D68A;
+        --pill-part-bg: rgba(255, 107, 0, 0.24);    --pill-part-tx: #FFB37E;
+        --pill-way-bg: rgba(0, 167, 225, 0.22);     --pill-way-tx: #8FD8F8;
+        --pill-notyet-bg: rgba(174, 188, 214, 0.16);--pill-notyet-tx: #C3CFE4;
+        --pill-watch-bg: rgba(213, 34, 39, 0.28);   --pill-watch-tx: #FFA3A6;
+        --trail-solid: #5AA7F0;
+        --trail-dot: #5B729E;
+        --marker-bg: #27365A;
+        --marker-tx: #EAF1FB;
+        --marker-done-bg: #509E2F;
+        --marker-done-tx: #FFFFFF;
+      }
+      [data-theme="light"] {
+        --bg: #F3F5F7;
+        --surface: #FFFFFF;
+        --surface-2: #F8FAFB;
+        --border: #E3E7EB;
+        --text: #18242E;
+        --muted: #5B6976;
+        --accent: #005CB9;
+        --on-accent: #FFFFFF;
+        --topo: rgba(0, 92, 185, 0.05);
+        --shadow: 0 10px 26px rgba(4, 44, 84, 0.10);
+        --pill-ready-bg: #E3F0D8;   --pill-ready-tx: #356B1D;
+        --pill-part-bg: #FFE7D1;    --pill-part-tx: #9C4A02;
+        --pill-way-bg: #D9F0FB;     --pill-way-tx: #005CB9;
+        --pill-notyet-bg: #E8ECEF;  --pill-notyet-tx: #5B6976;
+        --pill-watch-bg: #FBE0E1;   --pill-watch-tx: #A3141A;
+        --trail-solid: #005CB9;
+        --trail-dot: #9DB4C8;
+        --marker-bg: #FFFFFF;
+        --marker-tx: #18242E;
+        --marker-done-bg: #509E2F;
+        --marker-done-tx: #FFFFFF;
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+        font-size: 17px;
+        line-height: 1.6;
+        transition: background 0.25s ease, color 0.25s ease;
+      }
+      .topo {
+        position: fixed; inset: 0; z-index: -1; pointer-events: none;
+        background-image:
+          repeating-radial-gradient(circle at 12% -10%, transparent 0 90px, var(--topo) 90px 91px, transparent 91px 190px),
+          repeating-radial-gradient(circle at 105% 30%, transparent 0 120px, var(--topo) 120px 121px, transparent 121px 240px),
+          repeating-radial-gradient(circle at 50% 115%, transparent 0 100px, var(--topo) 100px 101px, transparent 101px 210px);
+      }
+      .wrap { max-width: 1060px; margin: 0 auto; padding: 0 20px 64px; }
+      a { color: var(--accent); }
+      a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+
+      /* ---------- top bar ---------- */
+      .topbar {
+        display: flex; justify-content: space-between; align-items: center; gap: 12px;
+        padding: 16px 0 4px; flex-wrap: wrap;
+      }
+      .topbar .brand { font-weight: 700; letter-spacing: 0.02em; font-size: 0.95rem; color: var(--muted); }
+      .topbar .brand strong { color: var(--text); }
+      .topbar nav { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+      .devlink { font-size: 0.92rem; font-weight: 600; text-decoration: none; }
+      .devlink:hover { text-decoration: underline; }
+      .themebtn {
+        font: inherit; font-size: 0.88rem; font-weight: 600; cursor: pointer;
+        color: var(--text); background: var(--surface); border: 1px solid var(--border);
+        border-radius: 999px; padding: 6px 14px;
+      }
+      .themebtn:hover { border-color: var(--accent); }
+
+      /* ---------- hero ---------- */
+      .hero { padding: 34px 0 10px; }
+      .kicker {
+        font-size: 0.8rem; font-weight: 700; letter-spacing: 0.22em; color: var(--accent);
+        margin: 0 0 12px; text-transform: uppercase;
+      }
+      h1 {
+        font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+        font-size: clamp(2.1rem, 5.4vw, 3.4rem); line-height: 1.12; margin: 0 0 16px; font-weight: 700;
+      }
+      .tagline { font-size: clamp(1.05rem, 2.4vw, 1.3rem); color: var(--muted); max-width: 46em; margin: 0 0 22px; }
+      .tagline strong { color: var(--text); }
+      .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 26px; padding: 0; list-style: none; }
+      .chips li {
+        background: var(--surface); border: 1px solid var(--border); border-radius: 999px;
+        padding: 6px 14px; font-size: 0.9rem; font-weight: 600;
+      }
+      .who {
+        background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+        padding: 18px 22px; box-shadow: var(--shadow);
+      }
+      .who h2 { margin: 0 0 6px; font-size: 1.05rem; }
+      .who p { margin: 0; color: var(--muted); }
+      .who p strong { color: var(--text); }
+
+      /* ---------- trail map ---------- */
+      .trailbox {
+        margin-top: 28px; background: var(--surface); border: 1px solid var(--border);
+        border-radius: 16px; padding: 20px 18px 10px; box-shadow: var(--shadow);
+      }
+      .trailbox h2 { margin: 0 0 2px; font-size: 1.1rem; }
+      .trailbox .sub { margin: 0 0 6px; color: var(--muted); font-size: 0.94rem; }
+      .trailbox svg { width: 100%; height: auto; display: block; }
+      .trail-legend { display: flex; gap: 22px; flex-wrap: wrap; padding: 6px 4px 12px; font-size: 0.88rem; color: var(--muted); }
+      .trail-legend span { display: inline-flex; align-items: center; gap: 8px; }
+      .swatch { width: 34px; height: 0; border-top: 3px solid var(--trail-solid); border-radius: 2px; }
+      .swatch.dot { border-top-style: dotted; border-top-color: var(--trail-dot); }
+      .marker { cursor: pointer; }
+      .marker circle.ring { fill: var(--marker-bg); stroke: var(--border); stroke-width: 1.5; }
+      .marker.done circle.ring { fill: var(--marker-done-bg); stroke: transparent; }
+      .marker text { fill: var(--marker-tx); font-weight: 700; font-size: 15px; text-anchor: middle; dominant-baseline: central; pointer-events: none; font-family: inherit; }
+      .marker.done text { fill: var(--marker-done-tx); }
+      .marker:hover circle.ring, .marker:focus circle.ring { stroke: var(--accent); stroke-width: 3; }
+      .camp-label { fill: var(--muted); font-size: 12.5px; text-anchor: middle; font-family: inherit; }
+
+      /* ---------- how to read ---------- */
+      .read { margin-top: 28px; }
+      .read h2, .section-h {
+        font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+        font-size: 1.55rem; margin: 0 0 6px;
+      }
+      .read p.lede, .section-lede { color: var(--muted); margin: 0 0 16px; max-width: 48em; }
+      .badges { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
+      .badge-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; }
+      .badge-card p { margin: 8px 0 0; font-size: 0.92rem; color: var(--muted); }
+
+      .pill {
+        display: inline-block; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.04em;
+        padding: 3px 11px; border-radius: 999px; text-transform: uppercase; white-space: nowrap;
+      }
+      .pill.ready  { background: var(--pill-ready-bg);  color: var(--pill-ready-tx); }
+      .pill.part   { background: var(--pill-part-bg);   color: var(--pill-part-tx); }
+      .pill.way    { background: var(--pill-way-bg);    color: var(--pill-way-tx); }
+      .pill.notyet { background: var(--pill-notyet-bg); color: var(--pill-notyet-tx); }
+      .pill.watch  { background: var(--pill-watch-bg);  color: var(--pill-watch-tx); }
+
+      /* ---------- stories ---------- */
+      .stories { margin-top: 40px; }
+      .story-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; }
+      .story {
+        background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+        padding: 20px; box-shadow: var(--shadow); display: flex; flex-direction: column;
+      }
+      .story .q {
+        font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+        font-size: 1.18rem; line-height: 1.35; margin: 0 0 10px;
+      }
+      .story p { margin: 0; color: var(--muted); font-size: 0.96rem; }
+      .story .from { margin-top: auto; padding-top: 12px; font-size: 0.8rem; color: var(--muted); letter-spacing: 0.03em; }
+
+      /* ---------- at a glance ---------- */
+      .glance { margin-top: 44px; }
+      .glance-table { width: 100%; border-collapse: collapse; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; box-shadow: var(--shadow); }
+      .glance-table caption { text-align: left; padding: 0 2px 10px; color: var(--muted); font-size: 0.94rem; }
+      .glance-table th, .glance-table td { text-align: left; padding: 13px 16px; vertical-align: top; }
+      .glance-table thead th { background: var(--surface-2); font-size: 0.82rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+      .glance-table tbody tr + tr td { border-top: 1px solid var(--border); }
+      .glance-table td.want { font-weight: 600; }
+      .glance-table .pill { white-space: normal; line-height: 1.4; }
+      .glance-table td.where { white-space: nowrap; }
+      @media (max-width: 640px) {
+        .glance-table thead { display: none; }
+        .glance-table, .glance-table tbody, .glance-table tr, .glance-table td { display: block; width: 100%; }
+        .glance-table tr { padding: 8px 0; }
+        .glance-table tbody tr + tr { border-top: 1px solid var(--border); }
+        .glance-table tbody tr + tr td { border-top: none; }
+        .glance-table td { padding: 4px 16px; }
+        .glance-table td.want { padding-top: 10px; }
+        .glance-table td.where { padding-bottom: 12px; white-space: normal; }
+      }
+
+      /* ---------- camps ---------- */
+      .camps { margin-top: 48px; display: flex; flex-direction: column; gap: 18px; }
+      .camps > h2 { margin-bottom: -4px; }
+      .camp {
+        background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+        padding: 24px 26px; box-shadow: var(--shadow); scroll-margin-top: 18px;
+      }
+      .camp-head { display: flex; align-items: flex-start; gap: 16px; flex-wrap: wrap; margin-bottom: 6px; }
+      .camp-num {
+        flex: 0 0 auto; width: 46px; height: 46px; border-radius: 50%;
+        background: var(--surface-2); border: 1.5px solid var(--border);
+        display: flex; align-items: center; justify-content: center;
+        font-weight: 800; font-size: 1.05rem;
+      }
+      .camp-num.done { background: var(--marker-done-bg); color: #fff; border-color: transparent; }
+      .camp-num.watch { background: var(--pill-watch-bg); color: var(--pill-watch-tx); border-color: transparent; }
+      .camp-num.way { background: var(--pill-way-bg); color: var(--pill-way-tx); border-color: transparent; }
+      .camp-titles { flex: 1 1 260px; min-width: 220px; }
+      .camp-titles h3 {
+        font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+        margin: 2px 0 4px; font-size: 1.42rem; line-height: 1.25;
+      }
+      .camp-titles .means { margin: 0; color: var(--accent); font-weight: 600; font-size: 0.97rem; }
+      .camp .pill { margin-top: 6px; }
+      .camp p { margin: 10px 0; max-width: 52em; }
+      .camp ul { margin: 10px 0 4px; padding-left: 1.25em; max-width: 52em; }
+      .camp li { margin: 7px 0; }
+      .camp li::marker { color: var(--accent); }
+      .split { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 12px; }
+      .split > div { background: var(--surface-2); border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; }
+      .split h4 { margin: 0 0 6px; font-size: 0.95rem; }
+      .split p { margin: 0; font-size: 0.96rem; color: var(--muted); }
+      .split p strong { color: var(--text); }
+      @media (max-width: 640px) { .split { grid-template-columns: 1fr; } }
+
+      .promises { list-style: none; margin: 12px 0 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+      .promises li { background: var(--surface-2); border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; max-width: none; margin: 0; }
+      .promises li::marker { content: none; }
+      .promises .p-name { font-weight: 700; font-size: 1.02rem; }
+      .promises p { margin: 4px 0 0; color: var(--muted); font-size: 0.97rem; }
+
+      /* ---------- footer ---------- */
+      footer { margin-top: 52px; border-top: 1px solid var(--border); padding-top: 22px; color: var(--muted); font-size: 0.92rem; }
+      footer p { margin: 6px 0; max-width: 60em; }
+      footer .theme-credit { font-style: italic; }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        body { transition: none; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="topo" aria-hidden="true"></div>
+    <div class="wrap">
+
+      <div class="topbar">
+        <div class="brand"><strong>Keyboard Studio</strong> · a leaflet for the people who will use it</div>
+        <nav>
+          <a class="devlink" href="index.html">Developer? See the Trailmap →</a>
+          <button class="themebtn" id="themeToggle" type="button" aria-label="Switch between the navy and light themes">☀ Light theme</button>
+        </nav>
+      </div>
+
+      <header class="hero">
+        <p class="kicker">A leaflet for keyboard authors</p>
+        <h1>Keyboard Studio — What to Expect</h1>
+        <p class="tagline"><strong>You know your language. Keyboard Studio handles the machinery.</strong>
+          Here is what making a keyboard feels like today, what is still rough, and what is on its way — in plain language.</p>
+        <ul class="chips">
+          <li>Runs in your browser</li>
+          <li>No code to write</li>
+          <li>Free to use</li>
+          <li>English + French today</li>
+          <li>Works on a phone screen</li>
+        </ul>
+        <div class="who">
+          <h2>Who this is for</h2>
+          <p>People who know a language's alphabet and sounds — <strong>teachers, translators, community members,
+            language workers</strong> — who have never written keyboard software, and should never need to.
+            If that is you, this page is your map of the journey: what the studio can already do for you,
+            where the path is still rough, and what is coming next.</p>
+        </div>
+      </header>
+
+      <section class="trailbox" aria-labelledby="trail-h">
+        <h2 id="trail-h">The journey at a glance</h2>
+        <p class="sub">Ten stops on one path — from your language's alphabet to a keyboard the whole world can install. Tap a number to jump to that stop.</p>
+        <svg viewBox="0 0 1180 300" role="img" aria-label="Illustrated trail map: ten numbered stops along a path; the line is solid where the ground is ready today and dotted where the trail is still being built, ending in a summit flag at stop nine.">
+          <!-- dotted trail ahead -->
+          <path d="M 70 218 C 200 218, 240 96, 372 96 S 560 218, 668 218 S 830 96, 928 96 S 1066 150, 1096 138" fill="none" stroke="var(--trail-dot)" stroke-width="4" stroke-linecap="round" stroke-dasharray="1 13"/>
+          <!-- solid trail covered -->
+          <path d="M 70 218 C 200 218, 240 96, 372 96 S 560 218, 668 218 C 705 218, 738 196, 773 159" fill="none" stroke="var(--trail-solid)" stroke-width="4" stroke-linecap="round"/>
+          <!-- summit flag at stop 9 -->
+          <g aria-hidden="true">
+            <line x1="1018" y1="96" x2="1018" y2="52" stroke="#FF6B00" stroke-width="3.5"/>
+            <path d="M 1018 52 L 1046 60 L 1018 69 Z" fill="#FF6B00"/>
+          </g>
+          <g font-family="inherit">
+            <a href="#camp-01"><g class="marker done"><circle class="ring" cx="70" cy="218" r="19"/><text x="70" y="218">1</text></g></a>
+            <text class="camp-label" x="70" y="256">Start</text>
+            <a href="#camp-02"><g class="marker done"><circle class="ring" cx="221" cy="159" r="19"/><text x="221" y="159">2</text></g></a>
+            <text class="camp-label" x="221" y="197">Questions</text>
+            <a href="#camp-03"><g class="marker done"><circle class="ring" cx="372" cy="96" r="19"/><text x="372" y="96">3</text></g></a>
+            <text class="camp-label" x="372" y="134">See &amp; try</text>
+            <a href="#camp-04"><g class="marker done"><circle class="ring" cx="519" cy="159" r="19"/><text x="519" y="159">4</text></g></a>
+            <text class="camp-label" x="519" y="197">Accents</text>
+            <a href="#camp-05"><g class="marker done"><circle class="ring" cx="668" cy="218" r="19"/><text x="668" y="218">5</text></g></a>
+            <text class="camp-label" x="668" y="256">Phones</text>
+            <a href="#camp-06"><g class="marker done"><circle class="ring" cx="773" cy="159" r="19"/><text x="773" y="159">6</text></g></a>
+            <text class="camp-label" x="773" y="197">Take it home</text>
+            <a href="#camp-07"><g class="marker"><circle class="ring" cx="878" cy="109" r="19"/><text x="878" y="109">7</text></g></a>
+            <text class="camp-label" x="878" y="147">Rough ground</text>
+            <a href="#camp-08"><g class="marker"><circle class="ring" cx="964" cy="150" r="19"/><text x="964" y="150">8</text></g></a>
+            <text class="camp-label" x="964" y="188">On its way</text>
+            <a href="#camp-09"><g class="marker"><circle class="ring" cx="1018" cy="96" r="19"/><text x="1018" y="96">9</text></g></a>
+            <text class="camp-label" x="1018" y="134">The last mile</text>
+            <a href="#camp-10"><g class="marker"><circle class="ring" cx="1096" cy="138" r="19"/><text x="1096" y="138">10</text></g></a>
+            <text class="camp-label" x="1096" y="176">Promises</text>
+          </g>
+        </svg>
+        <div class="trail-legend">
+          <span><span class="swatch"></span> Ready today</span>
+          <span><span class="swatch dot"></span> Still being built</span>
+          <span>⚑ Summit: your keyboard, in the official Keyman library</span>
+        </div>
+      </section>
+
+      <section class="read" aria-labelledby="read-h">
+        <h2 id="read-h">How to read this map</h2>
+        <p class="lede">The stops carry these badges. They describe what you would actually find if you opened the studio today — not what we hope, and not what is planned someday.</p>
+        <div class="badges">
+          <div class="badge-card"><span class="pill ready">Ready today</span><p>It works now. You can rely on it for a real keyboard.</p></div>
+          <div class="badge-card"><span class="pill part">Partly ready</span><p>The main path works; some edges are still being finished.</p></div>
+          <div class="badge-card"><span class="pill way">On its way</span><p>Being built. Not in your hands yet, but coming.</p></div>
+          <div class="badge-card"><span class="pill notyet">Not yet</span><p>Not started, or not possible today. We will say so plainly.</p></div>
+          <div class="badge-card"><span class="pill watch">Watch out</span><p>Honest rough edges — things that may trip you up right now.</p></div>
+        </div>
+      </section>
+
+      <section class="stories" aria-labelledby="stories-h">
+        <h2 class="section-h" id="stories-h">Stories we built for</h2>
+        <p class="section-lede">Before building anything, the team writes down a real person's story and builds until that story works. These three are taken from the project's own plans — the headings are the stories' real titles.</p>
+        <div class="story-grid">
+          <article class="story">
+            <p class="q">“Paste a paragraph and get an alphabet”</p>
+            <p>An author pastes a paragraph in their language — a Bible portion, a school primer, a WhatsApp message — and the next screen opens with every distinct character from that text already proposed, ready to check.</p>
+            <p class="from">From the studio's own user stories</p>
+          </article>
+          <article class="story">
+            <p class="q">A touch keyboard that tells the truth</p>
+            <p>In Cameroonian tone languages, marks live on phone keys whose caps show ◌̀ — a dotted circle with the accent. The studio now counts those keys honestly, so what it says your keyboard can type is what it can type — and you can give an empty touch key a letter simply by choosing it.</p>
+            <p class="from">From the studio's own user stories</p>
+          </article>
+          <article class="story">
+            <p class="q">“My keyboards” — everything in one place</p>
+            <p>An author who has started two keyboards and shared a third opens one list and sees all three: drafts marked as drafts with when they were last touched, the shared one marked as shared with its link kept — ready to resume exactly where they left off.</p>
+            <p class="from">From the studio's own user stories</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="glance" aria-labelledby="glance-h">
+        <h2 class="section-h" id="glance-h">At a glance</h2>
+        <table class="glance-table">
+          <caption>The short version — what you can do today, and where this page explains it.</caption>
+          <thead>
+            <tr><th scope="col">You want to…</th><th scope="col">Today</th><th scope="col">Where</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="want">Make a keyboard for an alphabetic language</td>
+              <td><span class="pill ready">Ready</span></td>
+              <td class="where">Start in <a href="https://keyboard-studio.github.io/keyboard-studio/">the studio</a></td>
+            </tr>
+            <tr>
+              <td class="want">Adapt an existing keyboard</td>
+              <td><span class="pill part">Ready, minor polish bugs</span></td>
+              <td class="where">Start in the studio · see <a href="#camp-07">stop 07</a></td>
+            </tr>
+            <tr>
+              <td class="want">Make a keyboard for Ethiopic, Chinese, Japanese and Korean writing systems</td>
+              <td><span class="pill notyet">Not yet</span></td>
+              <td class="where">See <a href="#camp-07">stop 07</a></td>
+            </tr>
+            <tr>
+              <td class="want">Publish to the Keyman library</td>
+              <td><span class="pill part">Partly — submission prepared, shepherded review still being set up</span></td>
+              <td class="where">See <a href="#camp-09">stop 09</a></td>
+            </tr>
+            <tr>
+              <td class="want">Read a manual</td>
+              <td><span class="pill notyet">Not yet — this leaflet is the guide for now</span></td>
+              <td class="where">You are reading it</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <main class="camps">
+        <h2 class="section-h">The ten stops</h2>
+
+        <article class="camp" id="camp-01">
+          <div class="camp-head">
+            <div class="camp-num done">1</div>
+            <div class="camp-titles">
+              <h3>Start where your language lives</h3>
+              <p class="means">What it means for you: you begin from something close to your language — never from an empty page.</p>
+            </div>
+            <span class="pill ready">Ready today</span>
+          </div>
+          <ul>
+            <li><strong>Begin from a keyboard close to your language</strong> — any published Keyman keyboard can be your starting point — or from plain US English if nothing close exists yet.</li>
+            <li><strong>Type your language's name</strong> and the studio fills in the rest: its script, its own name for itself, and its language code.</li>
+            <li><strong>Paste a paragraph of your language</strong> and your alphabet is proposed for you, drawn from large public collections of language data (known as CLDR and SLDR) that together cover thousands of languages.</li>
+            <li><strong>Every character shows where it came from</strong> — your text, the language data, or the starting keyboard — and you confirm or correct the list before anything is built on it.</li>
+          </ul>
+        </article>
+
+        <article class="camp" id="camp-02">
+          <div class="camp-head">
+            <div class="camp-num done">2</div>
+            <div class="camp-titles">
+              <h3>Answer questions, not code</h3>
+              <p class="means">What it means for you: the studio interviews you about your language, in plain words, one small step at a time.</p>
+            </div>
+            <span class="pill ready">Ready today</span>
+          </div>
+          <ul>
+            <li><strong>A step-by-step survey</strong> in plain language about your characters and how they behave — no technical vocabulary, nothing to memorise.</li>
+            <li><strong>Every question arrives already filled in</strong> with a sensible proposal. You confirm it or change it — you never start from a blank page.</li>
+            <li><strong>Change your mind freely.</strong> If you switch your starting keyboard later, your answers are kept and re-checked against the new start — never silently thrown away.</li>
+          </ul>
+        </article>
+
+        <article class="camp" id="camp-03">
+          <div class="camp-head">
+            <div class="camp-num done">3</div>
+            <div class="camp-titles">
+              <h3>See it, tap it, try it</h3>
+              <p class="means">What it means for you: instead of reading descriptions, you try real little keyboards made from your own letters.</p>
+            </div>
+            <span class="pill ready">Ready today</span>
+          </div>
+          <ul>
+            <li><strong>Live mini-keyboards, built from your letters.</strong> Where a behaviour can be shown, you tap the pattern that behaves the way your language should — you don't have to imagine it from a description.</li>
+            <li><strong>The studio rebuilds and checks your keyboard after every answer.</strong> It stops you only when something would actually break — not for harmless choices.</li>
+            <li><strong>Problems are flagged at the exact step where you can fix them</strong>, in words about your language, where you are standing when you read them.</li>
+          </ul>
+        </article>
+
+        <article class="camp" id="camp-04">
+          <div class="camp-head">
+            <div class="camp-num done">4</div>
+            <div class="camp-titles">
+              <h3>Accents &amp; marks, handled with care</h3>
+              <p class="means">What it means for you: the fiddly part of most alphabets gets its own careful step, with your letters in the examples.</p>
+            </div>
+            <span class="pill ready">Ready today</span>
+          </div>
+          <ul>
+            <li><strong>A dedicated “Accents &amp; marks” step</strong> sits right after your alphabet, while the letters are fresh in your mind.</li>
+            <li><strong>Decide for each mark</strong> whether it gets its own key or combines with the letter before it — and whether it is typed before or after its letter. Both answers can live in one alphabet: a busy tone mark on its own key, and the two most common combined letters on keys of their own.</li>
+            <li><strong>Interactive demos use your letters</strong>, not toy examples, so what you tap is what your community will type.</li>
+            <li><strong>You also choose how backspace behaves</strong> with combined characters — peel one piece at a time, or remove the whole character.</li>
+            <li><strong>The studio tells the truth</strong> about what your keyboard can type — on phone keyboards included, where marks live on keys like ◌̀.</li>
+          </ul>
+        </article>
+
+        <article class="camp" id="camp-05">
+          <div class="camp-head">
+            <div class="camp-num done">5</div>
+            <div class="camp-titles">
+              <h3>Your keyboard, on phones too</h3>
+              <p class="means">What it means for you: the keyboard you design is the keyboard your community gets on their phones — not an afterthought.</p>
+            </div>
+            <span class="pill ready">Ready today</span>
+          </div>
+          <ul>
+            <li><strong>The touch layout for phones is shaped from the keyboard you just designed</strong> — never a fixed template that ignores your work.</li>
+            <li><strong>Your choice:</strong> keep the starting keyboard's phone layout, or rebuild it from your desktop design.</li>
+            <li><strong>The studio itself works on a phone-sized screen</strong>, so you can build or adjust a keyboard from the same device your community uses.</li>
+            <li><strong>The studio's own screens speak English and French today</strong>, with more languages prepared through community translation.</li>
+          </ul>
+        </article>
+
+        <article class="camp" id="camp-06">
+          <div class="camp-head">
+            <div class="camp-num done">6</div>
+            <div class="camp-titles">
+              <h3>Take it home</h3>
+              <p class="means">What it means for you: a finished, installable keyboard for your community — and your projects kept safe in one place.</p>
+            </div>
+            <span class="pill ready">Ready today</span>
+          </div>
+          <ul>
+            <li><strong>Download an installable keyboard package</strong> for your community, or the full source files if you want them.</li>
+            <li><strong>Every package arrives complete</strong> — a readme, a licence, a history, a welcome page and a help page, generated for you — and you preview them before you download.</li>
+            <li><strong>“My keyboards” keeps every project in one place.</strong> Your drafts are saved as you work and survive closing the browser; come back tomorrow and resume where you left off.</li>
+            <li><strong>A keyboard you have shared is marked as shared</strong>, with its link kept, so you always know what the world can already see.</li>
+          </ul>
+        </article>
+
+        <article class="camp" id="camp-07">
+          <div class="camp-head">
+            <div class="camp-num watch">7</div>
+            <div class="camp-titles">
+              <h3>Still rough</h3>
+              <p class="means">What it means for you: the honest list. If your language or your plan touches one of these, better to know before you start.</p>
+            </div>
+            <span class="pill watch">Watch out</span>
+          </div>
+          <ul>
+            <li><strong>Scripts:</strong> the proven path covers the Latin, Cyrillic, Greek, Georgian and Armenian alphabetic scripts. Ethiopic, Chinese, Japanese and Korean writing systems are not supported yet.</li>
+            <li><strong>Copying an existing keyboard can still lose some polish</strong> — a font or a welcome picture may go missing from the copy. The team is fixing these right now; check your package's welcome page and fonts before you share it.</li>
+            <li><strong>There is no built-in tutorial and no finished user manual yet.</strong> This page is the guide for now — and the studio's questions are written to be answered without one.</li>
+            <li><strong>The studio is young.</strong> Expect it to change: screens may move, and new stops will appear on this map as they open.</li>
+          </ul>
+        </article>
+
+        <article class="camp" id="camp-08">
+          <div class="camp-head">
+            <div class="camp-num way">8</div>
+            <div class="camp-titles">
+              <h3>On its way to you</h3>
+              <p class="means">What it means for you: things being built now that will make your keyboard more fully yours.</p>
+            </div>
+            <span class="pill way">On its way</span>
+          </div>
+          <ul>
+            <li><strong>Write your keyboard's welcome and help text inside the studio</strong>, in your own words, instead of accepting generated pages.</li>
+            <li><strong>Design your keyboard's icon</strong> — the little picture your community will recognise it by.</li>
+            <li><strong>Bring a keyboard you already have as source files</strong> and adapt it, even if it was never published anywhere.</li>
+            <li><strong>A guided first-time walkthrough</strong>, for authors opening the studio for the very first time.</li>
+            <li><strong>Better preview fonts, including Andika</strong>, and coverage for scripts the standard fonts miss — so what you see while designing is what your letters really look like.</li>
+            <li><strong>For confident authors, an assisted editor</strong> for fine-tuning the rules directly — still without raw code.</li>
+          </ul>
+        </article>
+
+        <article class="camp" id="camp-09">
+          <div class="camp-head">
+            <div class="camp-num way">9</div>
+            <div class="camp-titles">
+              <h3>The last mile — your keyboard, worldwide</h3>
+              <p class="means">⚑ The summit of this map: your keyboard, in the official Keyman library, where anyone in the world can find and install it.</p>
+            </div>
+            <span class="pill part">Partly ready</span>
+          </div>
+          <div class="split">
+            <div>
+              <h4><span class="pill ready">Ready in part</span></h4>
+              <p style="margin-top:10px">The studio can already <strong>prepare a submission</strong> to the Keyman library — the collection where Keyman keyboards are shared with the world — packaged the way the library expects.</p>
+            </div>
+            <div>
+              <h4><span class="pill notyet">Not yet</span></h4>
+              <p style="margin-top:10px">No studio-made keyboard has completed the library's review yet, and review questions today expect a technical author. So the project has ruled that <strong>a named human shepherd will walk each submission through review with its author</strong>. Conversations with the Keyman team begin in November 2026.</p>
+            </div>
+          </div>
+          <p><strong>The promise:</strong> you will not face the review process alone, and you will never be asked to learn Git.</p>
+        </article>
+
+        <article class="camp" id="camp-10">
+          <div class="camp-head">
+            <div class="camp-num">10</div>
+            <div class="camp-titles">
+              <h3>What we promise</h3>
+              <p class="means">What it means for you: the rules the studio works by, stated plainly so you can hold us to them.</p>
+            </div>
+            <span class="pill ready">Our word</span>
+          </div>
+          <ul class="promises">
+            <li>
+              <span class="p-name">“Defaults are proposals.”</span>
+              <p>The studio suggests; you decide. Nothing it fills in for you is final until you have seen it and let it stand.</p>
+            </li>
+            <li>
+              <span class="p-name">“Nothing silent.”</span>
+              <p>If the studio changes its mind about something of yours, it asks — showing you the change — rather than quietly rewriting your work.</p>
+            </li>
+            <li>
+              <span class="p-name">“Warnings live where you can act.”</span>
+              <p>A problem is flagged at the step that owns it, in plain words — not collected into a scary list somewhere else.</p>
+            </li>
+            <li>
+              <span class="p-name">“Your work is yours.”</span>
+              <p>Drafts stay until you delete them. And a copy never steals the original author's words as your description — your keyboard's story is yours to write.</p>
+            </li>
+            <li>
+              <span class="p-name">“Your data has a named keeper.”</span>
+              <p>The studio's privacy notice names SIL Global as responsible for personal data — and reporting a crash never includes your text unless the design says so.</p>
+            </li>
+          </ul>
+          <p style="margin-top:16px"><strong>Requests and ideas:</strong> they land as issues on the project's GitHub — there is no separate feedback forum. That is where an ask arrives, and where its landing is recorded.</p>
+        </article>
+      </main>
+
+      <footer>
+        <p>A living leaflet — snapshot <strong>22 October 2026</strong> — drawn from the project's own specifications and user stories. It is the companion to the <a href="index.html">developer Trailmap</a>, which tells the same journey from the builders' side.</p>
+        <p>The studio: <a href="https://keyboard-studio.github.io/keyboard-studio/">keyboard-studio.github.io/keyboard-studio</a> · Project: <a href="https://github.com/keyboard-studio/keyboard-studio">github.com/keyboard-studio/keyboard-studio</a></p>
+        <p class="theme-credit">Theme: Keyboard Studio's own design tokens (SIL brand palette; navy is the studio default).</p>
+      </footer>
+
+    </div>
+    <script>
+      (function () {
+        var btn = document.getElementById('themeToggle');
+        var root = document.documentElement;
+        function sync() {
+          var dark = root.getAttribute('data-theme') !== 'light';
+          btn.textContent = dark ? '☀ Light theme' : '☾ Navy theme';
+        }
+        btn.addEventListener('click', function () {
+          var dark = root.getAttribute('data-theme') !== 'light';
+          root.setAttribute('data-theme', dark ? 'light' : 'dark');
+          sync();
+        });
+        sync();
+      })();
+    </script>
+  </body>
+</html>
