@@ -1,0 +1,545 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark light">
+<link rel="icon" href="data:,">
+<title>Keyboard Studio Trailmap</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,900&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme:dark;
+  /* SIL brand palette — theme-invariant (Keyboard Studio design tokens, brand.css) */
+  --sil-blue:#005CB9; --sil-light-blue:#00A7E1; --sil-violet:#93358D; --sil-red:#D52227; --sil-orange:#FF6B00; --sil-green:#509E2F; --sil-yellow:#FFB71B; --sil-navy:#042C54; --sil-blue-dark:#034D8A; --sil-green-dark:#38751C; --sil-red-dark:#A6121F; --sil-orange-dark:#C24F00; --sil-yellow-dark:#D99408;
+  /* NAVY theme — the studio default */
+  --paper:#18243F; --paper2:#27365A; --sage:#243C61; --card:#1F2C49; --ink:#EAF1FB; --ink2:#AEBCD6; --muted:#8493B6; --line:#33436A; --line-strong:#44588A;
+  --accent:#5AA7F0; --accent-hover:#74B6F4; --on-accent:#18243F;
+  --pill-shipped:#26401D; --pill-shipped-tx:#B9D8AC; --pill-building:#4A2C10; --pill-building-tx:#FFC499; --pill-planned:#173D54; --pill-planned-tx:#99DCF3; --pill-issue:#4A1E26; --pill-issue-tx:#EEA7A9; --pill-ongoing:#3A2140; --pill-ongoing-tx:#D4AED1;
+  --shadow:0 6px 24px rgba(0,0,0,.35),0 1px 3px rgba(0,0,0,.30);
+  --radius:18px;
+}
+html[data-theme="light"]{
+  color-scheme:light;
+  /* LIGHT theme — studio :root */
+  --paper:#F3F5F7; --paper2:#F8FAFB; --sage:#E5EEF8; --card:#FFFFFF; --ink:#18242E; --ink2:#5B6976; --muted:#65717E; --line:#E3E7EB; --line-strong:#CFD6DC;
+  --accent:#005CB9; --accent-hover:#034D8A; --on-accent:#FFFFFF;
+  --pill-shipped:#E2EFDA; --pill-shipped-tx:#38751C; --pill-building:#FFE7D1; --pill-building-tx:#C24F00; --pill-planned:#E5EEF8; --pill-planned-tx:#034D8A; --pill-issue:#F9DCDE; --pill-issue-tx:#A6121F; --pill-ongoing:#F0E2EF; --pill-ongoing-tx:#73266E;
+  --shadow:0 6px 24px rgba(4,44,84,.10),0 1px 3px rgba(4,44,84,.08);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:"IBM Plex Sans",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.55;font-size:16px}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.5;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240' viewBox='0 0 240 240'%3E%3Cg fill='none' stroke='%2300A7E1' stroke-opacity='0.07'%3E%3Cpath d='M-20 60 C40 20 90 90 150 50 S260 70 280 40'/%3E%3Cpath d='M-20 110 C40 70 90 140 150 100 S260 120 280 90'/%3E%3Cpath d='M-20 170 C50 130 100 190 160 150 S260 180 280 140'/%3E%3C/g%3E%3C/svg%3E")}
+a{color:var(--accent);text-decoration-thickness:1px;text-underline-offset:2px}
+a:hover{color:var(--accent-hover);text-decoration-thickness:2px}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;line-height:1.05;color:var(--ink)}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px;position:relative}
+/* nav */
+.topnav{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--paper) 92%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.topnav-inner{max-width:1080px;margin:0 auto;padding:10px 20px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.brand{font-family:Fraunces,Georgia,serif;font-weight:900;font-size:15px;letter-spacing:.02em;color:var(--ink);text-decoration:none;white-space:nowrap}
+.topnav nav{display:flex;gap:4px;flex-wrap:wrap;flex:1}
+.topnav nav a{font-size:13px;font-weight:600;color:var(--ink2);text-decoration:none;padding:6px 9px;border-radius:999px}
+.topnav nav a:hover{background:var(--sage)}
+.theme-btn{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:7px 12px;font:inherit;font-size:13px;font-weight:600;cursor:pointer}
+/* hero */
+.hero{padding:44px 0 10px}
+.kicker{font-size:11px;letter-spacing:.22em;font-weight:700;text-transform:uppercase;color:var(--accent)}
+.hero h1{font-size:clamp(42px,7vw,76px);font-weight:900;margin:10px 0 10px;letter-spacing:-.02em}
+.hero .tagline{font-size:clamp(17px,2.4vw,21px);max-width:720px;color:var(--ink2);margin:0}
+.hero .what{margin-top:14px;max-width:760px;background:var(--card);border:1px solid var(--line);border-left:5px solid var(--accent);border-radius:12px;padding:14px 16px;box-shadow:var(--shadow)}
+.stats{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 6px}
+.chip{background:var(--sage);color:var(--ink);border-radius:999px;padding:8px 13px;font-size:13px;font-weight:600}
+.chip b{color:var(--accent)}
+.chip.alt{background:var(--card);color:var(--ink);border:1px solid var(--line)}
+.chip.alt b{color:var(--accent)}
+/* trail svg */
+.trailbox{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px 16px 8px;margin:22px 0}
+.trailbox h2{margin:0 0 2px;font-size:22px}
+.trailbox p{margin:0;color:var(--muted);font-size:14px}
+.trail-svg{width:100%;height:auto;display:block}
+.trail-svg a{text-decoration:none}
+.trail-svg .campdot{cursor:pointer}
+.trail-svg .campdot circle{fill:var(--card);stroke:var(--ink);stroke-width:2}
+.trail-svg .campdot:hover circle{fill:var(--accent)}
+.trail-svg text{font-family:"IBM Plex Sans",sans-serif}
+/* sections */
+.section{margin:34px 0}
+.section-head{margin-bottom:14px}
+.section-head h2{font-size:32px;margin:6px 0 6px}
+.section-head p{color:var(--muted);max-width:720px;margin:0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px}
+.legend{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.pill{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;border-radius:999px;padding:3px 9px;white-space:nowrap;vertical-align:middle}
+.pill::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+.pill.shipped{background:var(--pill-shipped);color:var(--pill-shipped-tx)}
+.pill.building{background:var(--pill-building);color:var(--pill-building-tx)}
+.pill.planned{background:var(--pill-planned);color:var(--pill-planned-tx)}
+.pill.issue{background:var(--pill-issue);color:var(--pill-issue-tx)}
+.pill.ongoing{background:var(--pill-ongoing);color:var(--pill-ongoing-tx)}
+/* glance table */
+.glance{width:100%;border-collapse:collapse;font-size:14.5px}
+.glance th{text-align:left;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:8px 10px;border-bottom:2px solid var(--line)}
+.glance td{padding:10px;border-bottom:1px solid var(--line);vertical-align:top}
+.glance tr:last-child td{border-bottom:none}
+@media(max-width:640px){ .glance thead{display:none} .glance,.glance tbody,.glance tr,.glance td{display:block;width:100%} .glance tr{border:1px solid var(--line);border-radius:12px;margin-bottom:10px;padding:6px 4px;background:var(--card)} .glance td{border:none;padding:6px 10px} }
+/* camps */
+.camp{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px;margin:18px 0;scroll-margin-top:84px}
+.camp:target{outline:3px solid var(--accent);outline-offset:3px}
+.camp-top{display:flex;gap:14px;align-items:flex-start;flex-wrap:wrap}
+.camp-num{font-family:Fraunces,Georgia,serif;font-size:44px;font-weight:900;line-height:1;color:var(--paper2);-webkit-text-stroke:1.5px var(--ink);min-width:58px}
+.camp-head{flex:1;min-width:240px}
+.camp-head .kicker{font-size:10px}
+.camp-head h2{font-size:28px;margin:4px 0 4px}
+.camp-head .sub{color:var(--muted);margin:0;font-size:15px}
+.tag-revisited{display:inline-block;background:var(--sil-orange);color:var(--sil-navy);font-size:11px;font-weight:700;letter-spacing:.08em;padding:4px 9px;border-radius:999px;text-transform:uppercase}
+.progress{margin:14px 0 4px}
+.progress-meta{font-size:13px;font-weight:600;color:var(--ink2);display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.progress-bar{height:9px;background:var(--paper2);border-radius:999px;overflow:hidden;margin-top:6px;border:1px solid var(--line)}
+.progress-fill{height:100%;background:var(--accent);border-radius:999px}
+.progress-fill[style*="width:100%"]{background:var(--sil-green)}
+.cols{display:grid;grid-template-columns:1.65fr 1fr;gap:20px;margin-top:14px}
+@media(max-width:760px){.cols{grid-template-columns:1fr}}
+.cols h3{font-family:"IBM Plex Sans",sans-serif;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0 0 10px}
+.entry{list-style:none;margin:0;padding:0}
+.entry li{padding:9px 0;border-bottom:1px dashed var(--line)}
+.entry li:last-child{border-bottom:none}
+.entry .t{font-weight:700}
+.entry .n{display:block;color:var(--ink2);font-size:14px;margin-top:2px}
+.entry .n a{font-weight:600}
+.fieldnotes{background:var(--sage);border-radius:12px;padding:14px 16px;font-size:14px}
+.fieldnotes p{margin:0 0 8px}.fieldnotes p:last-child{margin:0}
+.finished-toggle{margin-top:10px;border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:999px;padding:7px 13px;font:inherit;font-size:13px;font-weight:700;cursor:pointer}
+.finished-group[hidden]{display:none}
+/* summit */
+.summit{background:var(--sil-navy);color:#EAF1FB;border-radius:var(--radius);padding:22px;margin:22px 0;box-shadow:var(--shadow)}
+.summit h2{color:#fff;font-size:26px;margin:6px 0}
+.summit .kicker{color:var(--sil-yellow)}
+.summit p{color:#C9D8EE;max-width:760px}
+.summit a{color:var(--sil-yellow)}
+/* campfire / journal */
+.timeline{list-style:none;margin:0;padding:0}
+.timeline li{padding:10px 0 10px 18px;border-left:3px solid var(--line);position:relative}
+.timeline li::before{content:"";position:absolute;left:-7px;top:16px;width:11px;height:11px;border-radius:50%;background:var(--sil-yellow);border:2px solid var(--card)}
+.journal-week{border-top:1px solid var(--line);padding:12px 0}
+.journal-week:first-of-type{border-top:none}
+footer{border-top:1px solid var(--line);margin-top:40px;padding:24px 0 40px;color:var(--muted);font-size:14px}
+footer .card{margin-bottom:14px}
+.small{font-size:13px;color:var(--muted)}
+.principles h3{font-size:19px;margin:16px 0 4px}
+.principles p{margin:0;color:var(--ink2)}
+@media(max-width:640px){
+  .topnav-inner{flex-direction:row;align-items:center;gap:8px;padding:8px 12px}
+  .brand{font-size:13px}
+  .topnav nav{order:3;flex:1 1 100%;flex-wrap:wrap;gap:2px}
+  .topnav nav a{font-size:12px;padding:5px 7px}
+  .theme-btn{margin-left:auto;padding:5px 10px;font-size:12px}
+  .hero{padding-top:26px}
+  .camp{padding:16px}
+  .camp-num{font-size:32px;min-width:42px}
+  .camp-head h2{font-size:24px}
+}
+@media print{ .topnav,.theme-btn,.finished-toggle{display:none!important} body{background:#fff;color:#18242E} body::before{display:none} .card,.camp,.trailbox{box-shadow:none;break-inside:avoid} .finished-group[hidden]{display:block!important} a{color:#005CB9} }
+</style>
+</head>
+<body>
+<header class="topnav"><div class="topnav-inner">
+<a class="brand" href="#top">▲ Keyboard Studio Trailmap</a>
+<nav aria-label="Trailmap sections">
+<a href="#map">Map</a><a href="#glance">At a glance</a><a href="#camps">Camps</a><a href="#campfire">Campfire</a><a href="#journal">Field Journal</a><a href="#camp-trail-ahead">Trail Ahead</a><a href="#camp-working-together">Working Together</a>
+</nav>
+<button class="theme-btn" id="themeToggle" type="button" aria-label="Toggle between the studio's navy and light themes">☀ Light</button>
+</div></header>
+
+<main class="wrap" id="top">
+<!-- HERO -->
+<section class="hero">
+<p class="kicker">A leaflet for the trail ahead</p>
+<h1>Keyboard Studio<br>Trailmap</h1>
+<p class="tagline">Where the project has been, where it is stuck, and where the trail goes next — in plain language, with every stop linked to its GitHub original.</p>
+<div class="what"><strong>What Keyboard Studio is:</strong> a browser-based studio that lets language experts create production-ready Keyman keyboards through a plain-language survey and show-by-example galleries — no hand-written <code>.kmn</code>. <a href="https://keyboard-studio.github.io/keyboard-studio/" target="_blank" rel="noopener">Open the live studio →</a> · <a href="https://github.com/keyboard-studio/keyboard-studio" target="_blank" rel="noopener">Repository →</a></div>
+<div class="stats" aria-label="Project at a glance">
+<span class="chip"><b>985</b> PRs merged</span>
+<span class="chip"><b>1,261</b> issues closed</span>
+<span class="chip"><b>104</b> specs (002–105)</span>
+<span class="chip alt"><b>5</b> packages</span>
+<span class="chip alt"><b>22</b> open issues</span>
+<span class="chip alt"><b>0</b> open PRs at snapshot</span>
+<span class="chip alt">Started <b>2 Jun 2026</b></span>
+<span class="chip alt">Studio <b>in production</b></span>
+</div>
+<p class="small">Snapshot: 22 October 2026. Counts verified live from GitHub on that date.</p>
+</section>
+
+<!-- TRAIL MAP SVG -->
+<section class="trailbox" id="map" aria-label="Illustrated trail map">
+<h2>The trail at a glance</h2>
+<p>Solid line = ground covered. Dotted line = trail ahead. Tap a numbered camp to jump to its card. The project sits at several camps at once — and revisits some.</p>
+<svg class="trail-svg" viewBox="0 0 1000 210" role="img" aria-label="Trail map with ten camps and a summit flag">
+<defs><marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#FF6B00"/></marker></defs>
+<!-- hills -->
+<path d="M0 175 Q120 90 260 150 T520 130 T780 110 T1000 90 L1000 210 L0 210 Z" style="fill:var(--paper2)" opacity=".9"/>
+<path d="M0 190 Q180 130 360 165 T720 150 T1000 135 L1000 210 L0 210 Z" style="fill:var(--sage)" opacity=".55"/>
+<!-- solid covered -->
+<path d="M30 160 C130 120 210 175 310 145 S470 105 580 130 S740 95 820 105" fill="none" style="stroke:var(--accent)" stroke-width="3.5" stroke-linecap="round"/>
+<!-- dotted ahead -->
+<path d="M820 105 C870 100 910 80 955 55" fill="none" stroke="#FF6B00" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="2 9" marker-end="url(#arr)"/>
+<!-- summit flag -->
+<g><line x1="955" y1="55" x2="955" y2="18" style="stroke:var(--ink)" stroke-width="3"/><path d="M955 18 L985 25 L955 33 Z" fill="#FF6B00"/><text x="955" y="12" text-anchor="middle" font-size="11" font-weight="700" style="fill:var(--ink)">SUMMIT</text><text x="955" y="205" text-anchor="middle" font-size="10" style="fill:var(--muted)">First keyboard through upstream review</text></g>
+<g id="trailMarkers"></g>
+</svg>
+<p class="small" style="padding-bottom:10px">01 Trailhead · 02 Authoring Walk · 03 Decisions · 04 Marks &amp; Touch · 05 Mobile · 06 Road Home · 07 Privacy · 08 Rough Ground · 09 Trail Ahead · 10 Working Together</p>
+</section>
+
+<!-- SUMMIT -->
+<section class="summit" aria-label="The summit">
+<p class="kicker">The summit — current marker, not a version promise</p>
+<h2>🏁 First keyboard through upstream review</h2>
+<p>The destination flag for this stretch of trail: the first studio-authored keyboard carried through a complete <a href="https://github.com/keymanapp/keyboards" target="_blank" rel="noopener">keymanapp/keyboards</a> review cycle. No studio keyboard has completed an upstream review cycle yet (<a href="https://github.com/keyboard-studio/keyboard-studio/issues/1006" target="_blank" rel="noopener">#1006</a>). Hybrid shepherding is ruled — a named human shepherd now (still to be named), the studio round-trip later, after one real cycle is observed. Keyman maintainer conversations start November 2026.</p>
+</section>
+
+<!-- HOW TO READ -->
+<section class="section" id="how-to-read">
+<div class="section-head"><p class="kicker">Orientation</p><h2>How to read this map</h2><p>Camps are stops along one trail, <strong>not phases</strong>. The project is at several camps at once, and some camps get revisited as the ground shifts. Each camp card shows its own progress, what is done, and what is still on the ground in front of it.</p></div>
+<div class="card">
+<strong>Status badges</strong>
+<div class="legend">
+<span class="pill shipped">Shipped</span><span>Done, merged, and in the studio or the record.</span>
+<span class="pill building">Building</span><span>Actively being built right now.</span>
+<span class="pill planned">Planned</span><span>Agreed and queued — not yet started.</span>
+<span class="pill issue">Known issue</span><span>Open problem, honestly marked.</span>
+<span class="pill ongoing">Ongoing</span><span>Continuous work with no finish line.</span>
+</div>
+<p style="margin:10px 0 0">Finished entries are tucked behind a <em>“Show N finished”</em> toggle on each camp so the open work stays visible first. Field notes are the short version of a ruling, a constraint, or a lesson — the GitHub link is always the full record.</p>
+</div>
+</section>
+
+<!-- AT A GLANCE -->
+<section class="section" id="glance">
+<div class="section-head"><p class="kicker">Overview</p><h2>At a glance</h2></div>
+<div class="card" style="padding:8px 10px">
+<table class="glance">
+<thead><tr><th>Area</th><th>Status</th><th>Where it lives</th></tr></thead>
+<tbody>
+<tr><td><strong>Contracts &amp; constitution</strong></td><td><span class="pill shipped">Shipped</span></td><td><code>spec.md</code>, <code>packages/contracts</code>, <code>docs/criteria.md</code></td></tr>
+<tr><td><strong>Authoring walk</strong></td><td><span class="pill shipped">Shipped</span> <span class="pill ongoing">Ongoing i18n</span></td><td>Live studio · specs 080 / 102</td></tr>
+<tr><td><strong>Decision architecture</strong></td><td><span class="pill shipped">Shipped</span> <span class="pill building">Building spec 105</span></td><td>specs 088–093, 105</td></tr>
+<tr><td><strong>Marks &amp; touch</strong></td><td><span class="pill shipped">Shipped</span> <span class="pill building">Building</span></td><td>spec 104 · PRs #2298, #2303, #2312</td></tr>
+<tr><td><strong>Mobile</strong></td><td><span class="pill shipped">Shipped</span></td><td>Epic <a href="https://github.com/keyboard-studio/keyboard-studio/issues/1853">#1853</a> · <code>docs/mobile-adaptation.md</code></td></tr>
+<tr><td><strong>CI &amp; triage</strong></td><td><span class="pill shipped">Shipped</span> <span class="pill ongoing">Ongoing</span></td><td>dev → nightly soak → main · muse-triage</td></tr>
+<tr><td><strong>Privacy</strong></td><td><span class="pill shipped">Shipped</span> <span class="pill ongoing">Ongoing</span></td><td>specs 095–101 · PR #2100</td></tr>
+<tr><td><strong>Known issues</strong></td><td><span class="pill issue">22 open issues</span></td><td>Camp 08 — Rough Ground</td></tr>
+<tr><td><strong>Upstream delivery</strong></td><td><span class="pill planned">Planned</span></td><td><a href="https://github.com/keyboard-studio/keyboard-studio/issues/1006">#1006</a> — the summit</td></tr>
+</tbody></table>
+</div>
+</section>
+
+<div id="camps"></div>
+<!-- CAMPS -->
+<section aria-label="Camps along the trail">
+
+<!-- 01 -->
+<article class="camp" id="camp-trailhead">
+<div class="camp-top"><div class="camp-num">01</div><div class="camp-head"><p class="kicker">Base camp · 0 km — where every route starts</p><h2>The Trailhead</h2><p class="sub">The contract before the climb.</p></div></div>
+<div class="progress"><div class="progress-meta"><span>5 of 5 done · 0 to go</span><span>Shipped</span></div><div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div></div>
+<div class="cols"><div><h3>The work here</h3>
+<ul class="entry todo-list">
+</ul>
+<button class="finished-toggle" type="button">Show 5 finished ▾</button>
+<div class="finished-group" hidden><ul class="entry">
+<li><span class="pill shipped">Shipped</span> <span class="t">Day-1 spec locked</span><span class="n"><code>spec.md</code> v2.0.0 — the founding description of what the studio is and is not.</span></li>
+<li><span class="pill shipped">Shipped</span> <span class="t">Contracts package</span><span class="n">Locked shared types, 7 service interfaces, and zod schemas in <code>packages/contracts</code> — the one vocabulary every package speaks.</span></li>
+<li><span class="pill shipped">Shipped</span> <span class="t">Review criteria catalog</span><span class="n">Triaged catalog of the Keyman PR-review criteria in <a href="https://github.com/keyboard-studio/keyboard-studio/blob/main/docs/criteria.md" target="_blank" rel="noopener">docs/criteria.md</a> — the checklist later lint and review tooling is built from.</span></li>
+<li><span class="pill shipped">Shipped</span> <span class="t">Constitution v2 + Architecture v2</span><span class="n">Ratified 14 Oct 2026 — precedence by topic; “defaults are proposals”; “done means integrated.”</span></li>
+<li><span class="pill shipped">Shipped</span> <span class="t">Project glossary</span><span class="n">Shared names for shared things, so specs, code, and issues mean the same words the same way.</span></li>
+</ul></div>
+</div>
+<aside><h3>Field notes</h3><div class="fieldnotes"><p><strong>Precedence, when texts disagree:</strong> product rulings beat spec text, spec text beats doc prose.</p><p>Everything later on this trail traces back to this camp. When a later camp revisits a ruling, the ruling is restated on its issue or spec — not quietly edited here.</p></div></aside>
+</div></article>
+
+<!-- 02 -->
+<article class="camp" id="camp-authoring-walk">
+<div class="camp-top"><div class="camp-num">02</div><div class="camp-head"><p class="kicker">The main path · the walk most travellers take</p><h2>The Authoring Walk</h2><p class="sub">The whole journey, end to end — from a starting keyboard to a deliverable package.</p></div></div>
+<div class="progress"><div class="progress-meta"><span>8 of 9 done · 1 to go</span><span>Core walk shipped</span></div><div class="progress-bar"><div class="progress-fill" style="width:89%"></div></div></div>
+<div class="cols"><div><h3>The work here</h3>
+<ul class="entry todo-list">
+<li><span class="pill ongoing">Ongoing</span> <span class="t">Internationalisation via Crowdin</span><span class="n">en / fr live; further locales follow the same pipeline as translations land.</span></li>
+</ul>
+<button class="finished-toggle" type="button">Show 8 finished ▾</button>
+<div class="finished-group" hidden><ul class="entry">
+<li><span class="pill shipped">Shipped</span> <span class="t">Start from anywhere sensible</span><span class="n">Any <code>release/</code> Keyman keyboard, the US-English fallback, or an uploaded <code>.kmn</code>.</span></li>
+<li><span class="pill shipped">Shipped</span> <span class="t">KeyboardIR — nothing edits raw text</span><span class="n">The base is parsed to a typed KeyboardIR; every edit works on the IR, never on raw <code>.kmn</code> text.</span></li>
+<li><span class="pill shipped">Shipped</span> <span class="t">Plain-language survey</span><span class="n">Computes 7 discovery axes and picks from 12 strategies — the author answers questions, not syntax.</span></li>
+<li><span class="pill shipped">Shipped</span> <span class="t">Show-by-example galleries</span><span class="n">Choices shown on live mini-keyboards, so the author picks what they can see and try.</span></li>
+<li><span class="pill shipped">Shipped</span> <span class="t">300 ms compile + lint cycle</span><span class="n">In-browser WASM compile plus 3-layer lint, fast enough to feel live while authoring.</span></li>
+<li><span class="pill shipped">Shipped</span> <span class="t">Touch layout derived</span><span class="n">Touch layout derived from the desktop rules — not a second, hand-maintained keyboard.</span></li>
+<li><span class="pill shipped">Shipped</span> <span class="t">Three ways home</span><span class="n">Delivery as <code>.kmp</code>, source <code>.zip</code>, or a GitHub draft PR to keymanapp/keyboards.</span></li>
+<li><span class="pill shipped">Shipped</span> <span class="t">Complete, honest packages</span><span class="n">Every output ships all six documentation members (specs 080 / 102), and a copy never inherits the base keyboard’s identity prose — <a href="https://github.com/keyboard-studio/keyboard-studio/pull/2304" target="_blank" rel="noopener">PR #2304</a>.</span></li>
+</ul></div>
+</div>
+<aside><h3>Field notes</h3><div class="fieldnotes"><p>By the characters step a template keyboard has always been chosen — arriving there with no template and no underlying keyboard is a bug, not a design state. Failing a close template, the underlying default is US English, as Keyman itself assumes.</p><p><a href="https://keyboard-studio.github.io/keyboard-studio/" target="_blank" rel="noopener">Walk it live →</a></p></div></aside>
+</div></article>
+
+<!-- 03 -->
+<article class="camp" id="camp-decisions">
+<div class="camp-top"><div class="camp-num">03</div><div class="camp-head"><p class="kicker">High ground · specs 088–093, revisited by 105</p><h2>Decisions, Not Documents</h2><p class="sub">The decision architecture — the studio remembers decisions, and derives everything else.</p></div><span class="tag-revisited">Revisited</span></div>
+<div class="progress"><div class="progress-meta"><span>7 of 8 done · 1 to go</span><span>Architecture shipped · migration building</span></div><div class="progress-bar"><div class="progress-fill" style="width:88%"></div></div></div>
+<div class="cols"><div><h3>The work here</h3>
+<ul class="entry todo-list">
+<li><span class="pill building">Building</span> <span class="t">Spec 105 — finish the migration</span><span class="n">Working copy becomes purely derived (envelope v3, ghost tests removed). Phase 0 landed in <a href="https://github.com/keyboard-studio/keyboard-studio/pull/2292" target="_blank" rel="noopener">PR #2292</a>; phases P1–P9 ahead. Spec: <code>specs/105-*</code>.</span></li>
+</ul>
+<button class="finished-toggle" type="button">Show 7 finished ▾</button>
+<div class="finished-group" hidden><ul class="entry">
+<li><span class="pill shipped">Shipped</span> <span class="t">DecisionSet (088)</span><span class="n">One record per author decision — the single store of author truth.</span></li>
+<li><span class="pill shipped">Shipped</span> <span class="t">Pure apply() (089)</span><span class="n">Decisions applied by a pure function — same decisions in, same keyboard out.</span></li>
+<li><span class="pill shipped">Shipped</span> <span class="t">Galleries as decision modules (090)</span><span class="n">Each gallery reads and writes decisions, not documents.</span></li>
+<li><span class="pill shipped">Shipped</span> <span class="t">Derived steps (091)</span><span class="n">Survey steps derived from the decision state, not hard-coded flow.</span></li>
+<li><span class="pill shipped">Shipped</span> <span class="t">Live extraction (092)</span><span class="n">Decisions extracted live from an existing keyboard when it becomes a base.</span></li>
+<li><span class="pill shipped">Shipped</span> <span class="t">Derived keyboard (093)</span><span class="n">The keyboard itself is a derivation of the DecisionSet.</span></li>
+<li><span class="pill shipped">Shipped</span> <span class="t">Base switch = retain + recalculate</span><span class="n">Switching base keyboards keeps decisions and re-derives against the new base; answers that no longer fit are re-proposed, never silently dropped.</span></li>
+</ul></div>
+</div>
+<aside><h3>Field notes</h3><div class="fieldnotes"><p>The 088–093 migration never quite finished: four persisted stores of author truth grew up side by side. Spec 105 is the honest tidy-up — finish the migration rather than paper over it.</p><p>Contingency on record: if deriving ever proves too slow on an error-free process, resurrecting a stored IR is an acceptable fallback — triggered by measured latency, not by vibes.</p></div></aside>
+</div></article>
+
+<!-- 04 -->
+<article class="camp" id="camp-marks-touch">
+<div class="camp-top"><div class="camp-num">04</div><div class="camp-head"><p class="kicker">Tricky footing · three axes that look like one</p><h2>Marks &amp; Touch</h2><p class="sub">Diacritics, composition, backspace, placement — and what a touch key really is.</p></div><span class="tag-revisited">Revisited</span></div>
+<div class="progress"><div class="progress-meta"><span>6 of 7 done · 1 to go</span><span>Walk-validated 32 / 32</span></div><div class="progress-bar"><div class="progress-fill" style="width:86%"></div></div></div>
+<div class="cols"><div><h3>The work here</h3>
+<ul class="entry todo-list">
+<li><span class="pill building">Building</span> <span class="t">Marks guard follow-ons</span><span class="n"><a href="https://github.com/keyboard-studio/keyboard-studio/issues/2285" target="_blank" rel="noopener">#2285</a> — guard defaults and edge cases following the round-3 walk.</span></li>
+</ul>
+<button class="finished-toggle" type="button">Show 6 finished ▾</button>
+<div class="finished-group" hidden><ul class="entry">
+<li><span class="pill shipped">Shipped</span> <span class="t">Three axes, ruled independent</span><span class="n">Input order, output composition, and backspace are interrelated yet independent. Default chains: letter+affix → NFD → backspace peel; affix/deadkey → NFC → backspace stack.</span></li>
+<li><span class="pill shipped">Shipped</span> <span class="t">Output composition as its own question</span><span class="n">One keyboard-wide NFC / NFD policy, proposed from input order only, freely overridable — <a href="https://github.com/keyboard-studio/keyboard-studio/pull/2298" target="_blank" rel="noopener">PR #2298</a>.</span></li>
+<li><span class="pill shipped">Shipped</span> <span class="t">Backspace as its own question</span><span class="n">Restored as a headed question with preview; all four composition × backspace pairings generated — <a href="https://github.com/keyboard-studio/keyboard-studio/pull/2312" target="_blank" rel="noopener">PR #2312</a>.</span></li>
+<li><span class="pill shipped">Shipped</span> <span class="t">Validation walk, round 3: 32 / 32 PASS</span><span class="n">All 32 axis combinations walked end to end, with 32 real keyboard <code>.zip</code> packages produced as evidence.</span></li>
+<li><span class="pill shipped">Shipped</span> <span class="t">Placement intelligence</span><span class="n">Per-key occupancy ledger, weighted placement rationale, and demotion proposals (core displaces convenience; convenience never demotes core) — <a href="https://github.com/keyboard-studio/keyboard-studio/pull/2303" target="_blank" rel="noopener">PR #2303</a>.</span></li>
+<li><span class="pill shipped">Shipped</span> <span class="t">Touch-key ID criteria — spec 104</span><span class="n"><code>T_</code> keys as a deliberate first-class idiom; the one resolver lives in contracts; all 27 tasks complete.</span></li>
+</ul></div>
+</div>
+<aside><h3>Field notes</h3><div class="fieldnotes"><p>Composed forms are evidence, not placement units: they show what attaches to what, then the marks series (attachments → treatment → output form) filters the placement set before the galleries.</p><p>A rule-free <code>T_</code> key is a dead key — that population is a repair list, not a pattern to copy.</p></div></aside>
+</div></article>
+
+<!-- 05 -->
+<article class="camp" id="camp-mobile">
+<div class="camp-top"><div class="camp-num">05</div><div class="camp-head"><p class="kicker">A narrower trail · same destination</p><h2>Mobile</h2><p class="sub">The studio in your pocket.</p></div></div>
+<div class="progress"><div class="progress-meta"><span>6 of 6 done · 0 to go</span><span>Epic #1853 shipped</span></div><div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div></div>
+<div class="cols"><div><h3>The work here</h3>
+<ul class="entry todo-list"></ul>
+<button class="finished-toggle" type="button">Show 6 finished ▾</button>
+<div class="finished-group" hidden><ul class="entry">
+<li><span class="pill shipped">Shipped</span> <span class="t">Mobile adaptation epic</span><span class="n"><a href="https://github.com/keyboard-studio/keyboard-studio/issues/1853" target="_blank" rel="noopener">#1853</a> — Phase 0 theme extension; shell tab bar; pane-step Questions / Preview switch; carve rail → cards; assign-loop stack + sheet; mobile Playwright project; verification. Phase 6 closed via <a href="https://github.com/keyboard-studio/keyboard-studio/pull/1864" target="_blank" rel="noopener">PR #1864</a>.</span></li>
+<li><span class="pill shipped">Shipped</span> <span class="t">Layout extension, not a reskin</span><span class="n">Standing rule in <code>docs/mobile-adaptation.md</code>: mobile extends the desktop layout system; it does not fork it.</span></li>
+<li><span class="pill shipped">Shipped</span> <span class="t">One token set</span><span class="n">A single design-token set is shared by mobile and desktop.</span></li>
+<li><span class="pill shipped">Shipped</span> <span class="t">Geometry ≠ pointer</span><span class="n"><code>useViewport</code> (geometry) kept separate from <code>useIsCoarsePointer</code> (pointer capability) — a narrow window is not a touch device.</span></li>
+<li><span class="pill shipped">Shipped</span> <span class="t">Two-width review rule</span><span class="n">Every UI change is reviewed at 390px <em>and</em> at desktop width before it lands.</span></li>
+<li><span class="pill shipped">Shipped</span> <span class="t">Mobile Playwright project</span><span class="n">Phone-width end-to-end coverage runs as its own CI lane (see Camp 06).</span></li>
+</ul></div>
+</div>
+<aside><h3>Field notes</h3><div class="fieldnotes"><p><strong>Hard constraint:</strong> the typing keyboard stays the KeymanWeb engine + OSK iframe on all viewports — host layout only, never the engine, the iframe, or the postMessage channel. OSK visibility is author-controlled: hiding the OSK unmounts the iframe; showing it remounts through normal init.</p></div></aside>
+</div></article>
+
+<!-- 06 -->
+<article class="camp" id="camp-road-home">
+<div class="camp-top"><div class="camp-num">06</div><div class="camp-head"><p class="kicker">The return leg · how work gets back safely</p><h2>The Road Home</h2><p class="sub">CI, promotion, and review — the route every change travels home.</p></div></div>
+<div class="progress"><div class="progress-meta"><span>7 of 8 done · 1 ongoing</span><span>Flow shipped · vigilance ongoing</span></div><div class="progress-bar"><div class="progress-fill" style="width:88%"></div></div></div>
+<div class="cols"><div><h3>The work here</h3>
+<ul class="entry todo-list">
+<li><span class="pill ongoing">Ongoing</span> <span class="t">“Resolve CI” means <em>all</em> lanes green</span><span class="n">Including the non-blocking e2e lanes. A red non-blocking lane is not resolved CI.</span></li>
+</ul>
+<button class="finished-toggle" type="button">Show 7 finished ▾</button>
+<div class="finished-group" hidden><ul class="entry">
+<li><span class="pill shipped">Shipped</span> <span class="t">PRs merge to dev, not main</span><span class="n">Main is no longer the direct merge target; it receives promotions.</span></li>
+<li><span class="pill shipped">Shipped</span> <span class="t">Nightly soak full-gates dev</span><span class="n">The full suite runs overnight against dev; dev is then promoted to main. First dev → main promotion: 17 Oct 2026.</span></li>
+<li><span class="pill shipped">Shipped</span> <span class="t">Fast gate first</span><span class="n">Lint / typecheck gate up front, curated impactful tests per PR, full CI overnight — per-PR CI aimed under 10 minutes.</span></li>
+<li><span class="pill shipped">Shipped</span> <span class="t">Parallel e2e lanes</span><span class="n">End-to-end split into parallel desktop / mobile / golden-walk jobs.</span></li>
+<li><span class="pill shipped">Shipped</span> <span class="t">Triage: a server service from the first weeks</span><span class="n">The <code>/km-triage</code> autonomous PR-review cycle was running unattended on the server within the project’s first week or two (repo created 2 Jun 2026; the <code>km-triage[bot]</code> GitHub App dates to 7 Jun 2026) — a scheduled Claude Code service that walks every open PR, dispatches review crews, and approves-and-parks, requests changes, or escalates as a PR comment. It never merges and never closes issues.</span></li>
+<li><span class="pill shipped">Shipped</span> <span class="t">Personal mode = escape hatch only</span><span class="n">Running the same triage by hand under your own GitHub account when you’re sitting there — an accelerator, never the main path (<code>docs/km-triage-personal-mode.md</code> says exactly this).</span></li>
+<li><span class="pill shipped">Shipped</span> <span class="t">Muse’s own triage identity — 10 Oct 2026</span><span class="n">What changed on 2026-10-10 was Muse’s identity, not triage’s existence: Muse got its own GitHub App, <code>muse-triage</code>, and its own 15-minute scheduled sweep, so in this environment reviews post as <code>muse-triage[bot]</code> and publish the <code>muse-triage/review</code> check.</span></li>
+</ul></div>
+</div>
+<aside><h3>Field notes</h3><div class="fieldnotes"><p><strong>Attribution trap, learned firsthand:</strong> the nightly soak reuses <code>ci.yml</code> with <code>checkout_ref: dev</code>, so soak runs display main’s head SHA but test dev’s tree. A red soak is dev-tree evidence, not a main failure.</p><p>Verify before claiming: a red check is A/B-proven against a pristine base before it is blamed on a change.</p></div></aside>
+</div></article>
+<!-- 07 -->
+<article class="camp" id="camp-privacy">
+<div class="camp-top"><div class="camp-num">07</div><div class="camp-head"><p class="kicker">A quiet camp · specs 095–101</p><h2>Privacy Camp</h2><p class="sub">Trust is part of the route.</p></div></div>
+<div class="progress"><div class="progress-meta"><span>4 of 6 done · 2 resting</span><span>Programme merged · exercises pending</span></div><div class="progress-bar"><div class="progress-fill" style="width:67%"></div></div></div>
+<div class="cols"><div><h3>The work here</h3>
+<ul class="entry todo-list">
+<li><span class="pill planned">Planned</span> <span class="t">DSAR dry-run + breach tabletop</span><span class="n">The subject-access and breach-response procedures still need to be exercised end to end.</span></li>
+<li><span class="pill ongoing">Ongoing</span> <span class="t">SIL controller acceptance</span><span class="n">SIL Global is named as controller in the published notice; SIL’s acceptance of that role is not yet evidenced. Resting here until it is.</span></li>
+</ul>
+<button class="finished-toggle" type="button">Show 4 finished ▾</button>
+<div class="finished-group" hidden><ul class="entry">
+<li><span class="pill shipped">Shipped</span> <span class="t">Privacy programme (specs 095–101)</span><span class="n">Privacy notice naming SIL Global as controller, processing record &amp; retention, subject access requests, erasure, breach response, and governance.</span></li>
+<li><span class="pill shipped">Shipped</span> <span class="t">Analytics readiness</span><span class="n">Cookieless analytics posture with opt-out; raw events 90 days, aggregates indefinite.</span></li>
+<li><span class="pill shipped">Shipped</span> <span class="t">Retention rulings applied</span><span class="n">Crash issues kept permanently as the public bug record, with written justification and an annual residue review; server drafts stay until the user deletes them.</span></li>
+<li><span class="pill shipped">Shipped</span> <span class="t">Programme merged</span><span class="n"><a href="https://github.com/keyboard-studio/keyboard-studio/pull/2100" target="_blank" rel="noopener">PR #2100</a> merged, carrying its merge gate in the PR body.</span></li>
+</ul></div>
+</div>
+<aside><h3>Field notes</h3><div class="fieldnotes"><p>This camp is deliberately resting, not abandoned: the documents are shipped, the two remaining items are an external acceptance and two rehearsals. Neither can be marked done from inside the repo alone.</p></div></aside>
+</div></article>
+
+<!-- 08 -->
+<article class="camp" id="camp-rough-ground">
+<div class="camp-top"><div class="camp-num">08</div><div class="camp-head"><p class="kicker">Loose scree · watch your footing</p><h2>Rough Ground</h2><p class="sub">Known issues, honestly marked — all open at snapshot, drawn from the 22 open issues.</p></div></div>
+<div class="progress"><div class="progress-meta"><span>0 of 8 done · 8 to go</span><span>Open ground — cluster actively burning down</span></div><div class="progress-bar"><div class="progress-fill" style="width:2%"></div></div></div>
+<div class="cols"><div><h3>The work here</h3>
+<ul class="entry todo-list">
+<li><span class="pill issue">Known issue</span> <span class="t">Copy-track output cluster — #2305–#2308</span><span class="n"><a href="https://github.com/keyboard-studio/keyboard-studio/issues/2305" target="_blank" rel="noopener">#2305</a> welcome-folder non-image files carried as images · <a href="https://github.com/keyboard-studio/keyboard-studio/issues/2306" target="_blank" rel="noopener">#2306</a> welcome-image keyboards get no generated layout charts · <a href="https://github.com/keyboard-studio/keyboard-studio/issues/2307" target="_blank" rel="noopener">#2307</a> stylesheets shipped under the base’s old release path · <a href="https://github.com/keyboard-studio/keyboard-studio/issues/2308" target="_blank" rel="noopener">#2308</a> base font / stylesheet dropped from the <code>.kps</code>. Font and welcome-image fixes already landed 22 Oct 2026 (PRs #2324 / #2325) — this cluster is actively burning down.</span></li>
+<li><span class="pill issue">Known issue</span> <span class="t">Corpus evaluation — #2278</span><span class="n"><a href="https://github.com/keyboard-studio/keyboard-studio/issues/2278" target="_blank" rel="noopener">#2278</a> — the strategy recognizer reads 86 deadkey-Latin keyboards as the wrong strategy.</span></li>
+<li><span class="pill issue">Known issue</span> <span class="t">Keyboard-wide fallback policy — #2178</span><span class="n"><a href="https://github.com/keyboard-studio/keyboard-studio/issues/2178" target="_blank" rel="noopener">#2178</a> — a single fallback policy for undefined keys, still to replace per-carve overrides. (KevinPNG; the issue’s engine half is unblocked.)</span></li>
+<li><span class="pill issue">Known issue</span> <span class="t">Spec-drift flag on spec 105 — #2318</span><span class="n"><a href="https://github.com/keyboard-studio/keyboard-studio/issues/2318" target="_blank" rel="noopener">#2318</a> — drift flagged between the spec 105 programme text and the ground as surveyed.</span></li>
+<li><span class="pill issue">Known issue</span> <span class="t">Invisible-characters pane scope — #2283</span><span class="n"><a href="https://github.com/keyboard-studio/keyboard-studio/issues/2283" target="_blank" rel="noopener">#2283</a> — small studio item: what the invisible-characters pane should cover.</span></li>
+<li><span class="pill issue">Known issue</span> <span class="t">Copyright-holder choice — #2281</span><span class="n"><a href="https://github.com/keyboard-studio/keyboard-studio/issues/2281" target="_blank" rel="noopener">#2281</a> — small studio item: letting the author choose the copyright holder.</span></li>
+<li><span class="pill issue">Known issue</span> <span class="t">Workspace cleanup archives — #2106</span><span class="n"><a href="https://github.com/keyboard-studio/keyboard-studio/issues/2106" target="_blank" rel="noopener">#2106</a> — deciding what to keep from workspace cleanup archives.</span></li>
+<li><span class="pill issue">Known issue</span> <span class="t">Design record kept open — #2297</span><span class="n"><a href="https://github.com/keyboard-studio/keyboard-studio/issues/2297" target="_blank" rel="noopener">#2297</a> (output composition) remains open even though its feature shipped — the record stays open for follow-ons. See the field note.</span></li>
+</ul>
+</div>
+<aside><h3>Field notes</h3><div class="fieldnotes"><p>An open issue here is not a confession — it is a marker. Every item links to its GitHub original, where the current state lives; this page is a snapshot, the issue is the live record.</p><p>#2297 is the standing example: shipped feature, open record — deliberate, so follow-ons have somewhere to land.</p></div></aside>
+</div></article>
+</section>
+
+<!-- CAMPFIRE -->
+<section class="section" id="campfire">
+<div class="section-head"><p class="kicker">Around the campfire</p><h2>Being worked on right now</h2><p>What is actually on the fire at snapshot — from live GitHub activity, not from a plan document.</p></div>
+<div class="card"><ul class="timeline">
+<li><span class="pill building">Building</span> <strong>Spec 105 — derived working copy programme.</strong> Phase 0 landed (<a href="https://github.com/keyboard-studio/keyboard-studio/pull/2292" target="_blank" rel="noopener">PR #2292</a>); phases P1–P9 ahead, ending in envelope v3 with ghost tests removed. See Camp 03.</li>
+<li><span class="pill building">Building</span> <strong>Copy-track output cluster burn-down (#2305–#2308).</strong> Fixes landing today — font and welcome-image fixes already in via PRs #2324 / #2325 on 22 Oct 2026. See Camp 08.</li>
+<li><span class="pill building">Building</span> <strong>Marks guard defaults — <a href="https://github.com/keyboard-studio/keyboard-studio/issues/2285" target="_blank" rel="noopener">#2285</a>.</strong> Follow-ons from the round-3 validation walk. See Camp 04.</li>
+<li><span class="pill ongoing">Ongoing</span> <strong>Spec-104 corpus gate residue.</strong> The touch-key resolver’s corpus gate is nightly-class in the dev soak, not per-PR — residue items are worked through the soak, not the PR lane.</li>
+<li><span class="pill ongoing">Ongoing</span> <strong>Triage, as ever.</strong> The server <code>/km-triage</code> service and Muse’s 15-minute <code>muse-triage</code> sweep keep walking open PRs — approve-and-park, request changes, or escalate. See Camp 06 for the full (corrected) history.</li>
+</ul></div>
+</section>
+
+<!-- FIELD JOURNAL -->
+<section class="section" id="journal">
+<div class="section-head"><p class="kicker">Field journal</p><h2>What we finished, week by week</h2><p>From merged PRs. Most recent week in full; earlier weeks in one line each.</p></div>
+<div class="card">
+<div class="journal-week"><h3 style="margin:0 0 8px;font-size:20px">19–22 October 2026 — the marks &amp; copy week</h3><ul class="entry">
+<li><span class="pill shipped">Shipped</span> <span class="t">Backspace as its own axis</span><span class="n"><a href="https://github.com/keyboard-studio/keyboard-studio/pull/2312" target="_blank" rel="noopener">PR #2312</a> — backspace restored as its own headed question, proposed from composition, overridable.</span></li>
+<li><span class="pill shipped">Shipped</span> <span class="t">Output composition question</span><span class="n"><a href="https://github.com/keyboard-studio/keyboard-studio/pull/2298" target="_blank" rel="noopener">PR #2298</a> — composition asked in its own terms, one keyboard-wide NFC / NFD policy.</span></li>
+<li><span class="pill shipped">Shipped</span> <span class="t">Weighted placement rationale</span><span class="n"><a href="https://github.com/keyboard-studio/keyboard-studio/pull/2303" target="_blank" rel="noopener">PR #2303</a> — occupancy ledger, weighted rationale, demotion banner.</span></li>
+<li><span class="pill shipped">Shipped</span> <span class="t">Guard fixes</span><span class="n">PRs #2320 / #2323 — walk-1 empty-context guard probe and follow-on fixes; PR CI all lanes green on #2320.</span></li>
+<li><span class="pill shipped">Shipped</span> <span class="t">Walk records, round 3 — 32 / 32 PASS</span><span class="n"><a href="https://github.com/keyboard-studio/keyboard-studio/pull/2321" target="_blank" rel="noopener">PR #2321</a> — all 32 axis combinations re-walked through Output, each keyboard <code>.zip</code> saved as evidence.</span></li>
+<li><span class="pill shipped">Shipped</span> <span class="t">Copy-track font + welcome images</span><span class="n">PRs #2324 / #2325 (22 Oct) — first fixes into the #2305–#2308 cluster.</span></li>
+<li><span class="pill shipped">Shipped</span> <span class="t">Dev → main promotions</span><span class="n">PRs #2317 / #2301 / #2296 — the promotion rhythm from Camp 06, exercised three times in one week.</span></li>
+</ul></div>
+<div class="journal-week"><p style="margin:0"><strong>Earlier in October —</strong> the privacy programme (specs 095–101, PR #2100) and the mobile epic (#1853) landed; Constitution v2 + Architecture v2 were ratified on 14 Oct; Muse’s <code>muse-triage</code> identity went live on 10 Oct, joining the server triage service that had run since June.</p></div>
+<div class="journal-week"><p style="margin:0"><strong>Late September – October —</strong> the decision architecture, specs 088–093, was built stacked in dependency order: DecisionSet, pure apply, gallery modules, derived steps, live extraction, derived keyboard.</p></div>
+</div>
+</section>
+
+<!-- 09 + 10 -->
+<section aria-label="Trail ahead and working together">
+<article class="camp" id="camp-trail-ahead">
+<div class="camp-top"><div class="camp-num">09</div><div class="camp-head"><p class="kicker">Dotted line from here · the trail ahead</p><h2>The Trail Ahead</h2><p class="sub">What is to come — next first, then planned, then the last mile to the summit.</p></div></div>
+<div class="progress"><div class="progress-meta"><span>0 of 9 done · 9 to go</span><span>All ahead of us</span></div><div class="progress-bar"><div class="progress-fill" style="width:2%"></div></div></div>
+<div class="cols"><div><h3>The work here</h3>
+<ul class="entry todo-list">
+<li><span class="pill building">Building</span> <span class="t">Spec 105, phases P1–P9</span><span class="n">Finish the derived-working-copy migration (Camp 03). Phase 0 landed; the programme is the current main effort.</span></li>
+<li><span class="pill building">Building</span> <span class="t">Spec 103 — first-class if() guards</span><span class="n">Corpus-led: a joint engine + content session on real <code>if()</code> usage decides the shape before any build.</span></li>
+<li><span class="pill planned">Planned</span> <span class="t">Hybrid authoring epic — #367 (P1 priority)</span><span class="n"><a href="https://github.com/keyboard-studio/keyboard-studio/issues/367" target="_blank" rel="noopener">#367</a> — the hybrid authoring epic, top planned priority.</span></li>
+<li><span class="pill planned">Planned</span> <span class="t">Rule behaviours + rule editor</span><span class="n"><a href="https://github.com/keyboard-studio/keyboard-studio/issues/1812" target="_blank" rel="noopener">#1812</a> rule behaviours, with <a href="https://github.com/keyboard-studio/keyboard-studio/issues/1432" target="_blank" rel="noopener">#1432</a> de-obfuscating the rule editor.</span></li>
+<li><span class="pill planned">Planned</span> <span class="t">Copy-track welcome / help authoring — #2155</span><span class="n"><a href="https://github.com/keyboard-studio/keyboard-studio/issues/2155" target="_blank" rel="noopener">#2155</a> — a copy author writes their own welcome / help prose (a copy never inherits identity prose — Camp 02).</span></li>
+<li><span class="pill planned">Planned</span> <span class="t">Icon editor — #1550</span><span class="n"><a href="https://github.com/keyboard-studio/keyboard-studio/issues/1550" target="_blank" rel="noopener">#1550</a>.</span></li>
+<li><span class="pill planned">Planned</span> <span class="t">Track-2 source-upload entry — #497</span><span class="n"><a href="https://github.com/keyboard-studio/keyboard-studio/issues/497" target="_blank" rel="noopener">#497</a>.</span></li>
+<li><span class="pill planned">Planned</span> <span class="t">First-time user tutorial — #552</span><span class="n"><a href="https://github.com/keyboard-studio/keyboard-studio/issues/552" target="_blank" rel="noopener">#552</a>.</span></li>
+<li><span class="pill planned">Planned</span> <span class="t">Andika preview font + script coverage — #1782</span><span class="n"><a href="https://github.com/keyboard-studio/keyboard-studio/issues/1782" target="_blank" rel="noopener">#1782</a> — Andika as preview font, plus coverage for scripts Noto misses.</span></li>
+</ul>
+</div>
+<aside><h3>Field notes</h3><div class="fieldnotes"><p><strong>The last mile — <a href="https://github.com/keyboard-studio/keyboard-studio/issues/1006" target="_blank" rel="noopener">#1006</a> upstream delivery governance:</strong> a named human shepherd for studio-submitted PRs, in place before the first real submission; the studio round-trip comes later, after one real review cycle is observed. Keyman maintainer conversations start November 2026. This is the road to the summit flag at the top of this page.</p><p>It is too early and too fluid for user docs — this trailmap is the public-facing record until the ground settles.</p></div></aside>
+</div></article>
+
+<article class="camp" id="camp-working-together">
+<div class="camp-top"><div class="camp-num">10</div><div class="camp-head"><p class="kicker">The last camp · how this crew works</p><h2>Working Together</h2><p class="sub">Principles, where things live, and how help is most useful.</p></div></div>
+<div class="progress"><div class="progress-meta"><span>6 of 6 practices live · 0 to go</span><span>Ongoing by nature</span></div><div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div></div>
+<div class="cols"><div class="principles"><h3 style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)">Principles</h3>
+<h3>Rule once, in the open</h3><p>Product rulings are recorded on the issue or spec and carried verbatim through spec, code, and tests.</p>
+<h3>Defaults are proposals</h3><p>Every step proposes and asks; nothing applies silently, and nothing is silently dropped.</p>
+<h3>Verify before claiming</h3><p>A red check is A/B-proven against a pristine base before it is blamed on a change; CI is only “resolved” when every lane is green.</p>
+<h3>Draft-first on ruling-carrying posts</h3><p>Posts that carry a ruling are drafted and checked before they are posted.</p>
+<h3>Push, don’t hold</h3><p>Finished, verified work gets pushed and flagged — not held locally.</p>
+<h3>“Over and out!”</h3><p>The sign-off posted on the GitHub issue when work is feature-complete and PRed.</p>
+</div>
+<aside><h3>Where things live</h3><div class="fieldnotes">
+<p><strong><code>spec.md</code> + <code>specs/</code></strong> — feature truth.</p>
+<p><strong><code>packages/contracts</code></strong> — the shared contract.</p>
+<p><strong><code>docs/criteria.md</code></strong> — the review checklist.</p>
+<p><strong>GitHub issues</strong> — rulings and status.</p>
+<p><strong>Triage</strong> — the server <code>/km-triage</code> service (running since the project’s first weeks) walks open PRs; Muse’s <code>muse-triage</code> sweep (since 10 Oct 2026) is the same discipline under Muse’s own identity. Personal mode is only the by-hand escape hatch.</p>
+<p><strong>This trailmap</strong> — the state of the project at a glance.</p>
+<p><strong>The studio itself</strong> — <a href="https://keyboard-studio.github.io/keyboard-studio/" target="_blank" rel="noopener">keyboard-studio.github.io/keyboard-studio</a>.</p>
+</div>
+<h3 style="margin-top:16px">How help is most useful</h3><div class="fieldnotes">
+<p>Smoke-test the exact failing walk and report concretely — what you did, what happened, what you expected.</p>
+<p>Answer the one ruling question a crew has staged, with its options and risks laid out.</p>
+<p>Merges to main remain Matthew’s call — PRs land on dev first (Camp 06).</p>
+<p><strong>Requests land as GitHub issues — there is no separate feedback forum; an issue is where an ask arrives and where its landing gets recorded.</strong> Contributors (e.g. Kevin) file and build through issues and PRs the same way.</p>
+</div></aside>
+</div></article>
+</section>
+
+<footer>
+<div class="card">
+<p style="margin:0 0 8px"><strong style="color:var(--ink)">Data &amp; honesty.</strong> Data: GitHub issues, pull requests and specs for <a href="https://github.com/keyboard-studio/keyboard-studio" target="_blank" rel="noopener">keyboard-studio/keyboard-studio</a> · Snapshot 22 October 2026 · Plain-language titles; every item links to its GitHub original.</p>
+<p style="margin:0 0 8px">This leaflet is a living document: a snapshot dated 22 October 2026, refreshed from the repository as the project moves — and linked in the repo docs index. Modelled on the <a href="https://myieye.github.io/fwlite-trailmap/" target="_blank" rel="noopener">FWLite Trailmap</a>, with thanks.</p>
+<p style="margin:0"><strong style="color:var(--ink)">No user documentation yet — deliberately.</strong> The ground is still moving.</p>
+</div>
+<p class="small">Keyboard Studio Trailmap · Camps are stops along one trail, not phases — the project is at several camps at once. <a href="#top">Back to the top ↑</a></p>
+<p class="small">Theme: Keyboard Studio's own design tokens (SIL brand palette; navy is the studio default).</p>
+</footer>
+</main>
+
+<script>
+// Trail markers
+(function(){
+  var camps=[
+    {n:'01',id:'camp-trailhead',x:55,y:152},{n:'02',id:'camp-authoring-walk',x:150,y:132},
+    {n:'03',id:'camp-decisions',x:245,y:158},{n:'04',id:'camp-marks-touch',x:345,y:140},
+    {n:'05',id:'camp-mobile',x:445,y:118},{n:'06',id:'camp-road-home',x:540,y:138},
+    {n:'07',id:'camp-privacy',x:635,y:112},{n:'08',id:'camp-rough-ground',x:725,y:128},
+    {n:'09',id:'camp-trail-ahead',x:815,y:100},{n:'10',id:'camp-working-together',x:885,y:78}
+  ];
+  var g=document.getElementById('trailMarkers'); if(!g) return;
+  var NS='http://www.w3.org/2000/svg';
+  camps.forEach(function(c){
+    var a=document.createElementNS(NS,'a'); a.setAttribute('href','#'+c.id); a.setAttribute('class','campdot');
+    var circ=document.createElementNS(NS,'circle'); circ.setAttribute('cx',c.x); circ.setAttribute('cy',c.y); circ.setAttribute('r','15');
+    var t=document.createElementNS(NS,'text'); t.setAttribute('x',c.x); t.setAttribute('y',c.y+4); t.setAttribute('text-anchor','middle'); t.setAttribute('font-size','11'); t.setAttribute('font-weight','700'); t.setAttribute('fill','currentColor'); t.textContent=c.n;
+    a.appendChild(circ); a.appendChild(t); g.appendChild(a);
+  });
+})();
+// Finished toggles
+document.querySelectorAll('.camp').forEach(function(camp){
+  var btn=camp.querySelector('.finished-toggle'); var grp=camp.querySelector('.finished-group');
+  if(!btn||!grp) return;
+  var label=btn.textContent;
+  btn.addEventListener('click',function(){
+    var open=grp.hasAttribute('hidden');
+    if(open){ grp.removeAttribute('hidden'); btn.textContent=label.replace('Show','Hide').replace('▾','▴'); }
+    else{ grp.setAttribute('hidden',''); btn.textContent=label; }
+  });
+});
+// Theme toggle (in-memory only for this session) — navy is the studio default; light is the alternate
+(function(){
+  var btn=document.getElementById('themeToggle'); if(!btn) return;
+  function sync(){ var light=document.documentElement.getAttribute('data-theme')==='light'; btn.textContent=light?'☾ Navy':'☀ Light'; }
+  sync();
+  btn.addEventListener('click',function(){
+    var light=document.documentElement.getAttribute('data-theme')==='light';
+    if(light){ document.documentElement.removeAttribute('data-theme'); }
+    else{ document.documentElement.setAttribute('data-theme','light'); }
+    sync();
+  });
+})();
+// If linked straight to a camp with finished work, leave toggles as-is; target outline is CSS :target.
+</script>
+</body>
+</html>
